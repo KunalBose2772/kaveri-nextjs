@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useModal } from '../context/ModalContext';
 import { useShop } from '../context/ShopContext';
@@ -11,18 +12,18 @@ export default function MobileBottomNav() {
 
     if (pathname === '/') return null;
 
-    const navItems = [
+    const sideItems = [
         {
-            name: 'Menu',
-            href: '/menu',
+            name: 'Home',
+            href: '/ashok-nagar',
             icon: (
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                 </svg>
             ),
             activeIcon: (
                 <svg className="w-6 h-6" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                 </svg>
             )
         },
@@ -73,62 +74,119 @@ export default function MobileBottomNav() {
     ];
 
     return (
-        <div className="lg:hidden fixed bottom-0 left-0 right-0 z-[60]">
-            <nav className="bg-white/90 backdrop-blur-xl border-t border-stone-200 px-6 py-3 pb-safe flex items-center justify-between shadow-[0_-5px_20px_rgba(0,0,0,0.05)]">
-                {navItems.map((item) => {
-                    const isActive = item.href ? (pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))) : false;
+        <div className="md:hidden fixed bottom-0 left-0 right-0 z-[60]">
+            <nav className="relative bg-white border-t border-stone-200 px-3 pb-safe shadow-[0_-2px_20px_rgba(0,0,0,0.08)]">
+                {/* Navigation Grid */}
+                <div className="grid grid-cols-5 items-end h-20">
+                    {/* Left Items */}
+                    {sideItems.slice(0, 2).map((item) => {
+                        const isActive = item.href ? (pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))) : false;
+                        const content = (
+                            <div className="flex flex-col items-center gap-1 py-2 relative">
+                                {/* Badge */}
+                                {item.badge > 0 && (
+                                    <div className="absolute -top-0.5 right-1/2 translate-x-3">
+                                        <span className="flex items-center justify-center min-w-[18px] h-[18px] px-1.5 bg-gradient-to-r from-[#d4af37] to-[#b8860b] text-white text-[9px] font-bold rounded-full shadow-md">
+                                            {item.badge > 99 ? '99+' : item.badge}
+                                        </span>
+                                    </div>
+                                )}
 
-                    const content = (
-                        <>
-                            {/* Badge */}
-                            {item.badge > 0 && (
-                                <div className="absolute -top-1 -right-1 z-10">
-                                    <span className="flex items-center justify-center min-w-[18px] h-[18px] px-1 bg-gradient-to-r from-[#d4af37] to-[#b8860b] text-white text-[9px] font-bold rounded-full shadow-lg">
-                                        {item.badge > 99 ? '99+' : item.badge}
+                                <div className={`transition-all duration-300 ${isActive ? 'text-[#d4af37] -translate-y-0.5 scale-110' : 'text-stone-500'}`}>
+                                    {isActive ? item.activeIcon : item.icon}
+                                </div>
+                                <span className={`text-[10px] font-bold transition-all duration-300 ${isActive ? 'text-[#d4af37]' : 'text-stone-500'}`}>
+                                    {item.name}
+                                </span>
+                            </div>
+                        );
+
+                        const commonClasses = "flex flex-col items-center transition-all duration-300";
+
+                        if (item.action) {
+                            return (
+                                <button key={item.name} onClick={item.action} className={commonClasses}>
+                                    {content}
+                                </button>
+                            );
+                        }
+
+                        return (
+                            <Link key={item.name} href={item.href} className={commonClasses}>
+                                {content}
+                            </Link>
+                        );
+                    })}
+
+                    {/* Center Menu Button - Circular with Logo */}
+                    <div className="flex justify-center -mt-8">
+                        <Link href="/menu">
+                            <div className="relative group">
+                                {/* Glow Effect */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37] to-[#b8860b] rounded-full blur-md opacity-50 group-hover:opacity-75 transition-opacity" />
+
+                                {/* Main Button */}
+                                <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-[#d4af37] via-[#f9e29c] to-[#b8860b] flex items-center justify-center shadow-2xl border-4 border-white group-hover:scale-105 transition-transform">
+                                    {/* Kaveri Logo */}
+                                    <Image
+                                        src="/assets/main_logo.png"
+                                        alt="Menu"
+                                        width={40}
+                                        height={40}
+                                        className="object-contain drop-shadow-md"
+                                    />
+                                </div>
+
+                                {/* Label */}
+                                <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                                    <span className={`text-[10px] font-bold ${pathname === '/menu' ? 'text-[#d4af37]' : 'text-stone-500'}`}>
+                                        Menu
                                     </span>
                                 </div>
-                            )}
-
-                            <div className={`transition-transform duration-300 ${isActive ? '-translate-y-1' : ''}`}>
-                                {isActive ? item.activeIcon : item.icon}
                             </div>
-
-                            <span className={`text-[9px] font-bold uppercase tracking-wider transition-all duration-300 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-100'
-                                }`}>
-                                {item.name}
-                            </span>
-
-                            {/* Active Indicator Dot */}
-                            {isActive && (
-                                <div className="absolute -top-3 w-8 h-0.5 bg-amber-500 rounded-b-full shadow-[0_2px_5px_rgba(245,158,11,0.5)]" />
-                            )}
-                        </>
-                    );
-
-                    const commonClasses = `flex flex-col items-center gap-1 transition-all duration-300 relative group ${isActive ? 'text-amber-600' : 'text-stone-400 hover:text-stone-600'}`;
-
-                    if (item.action) {
-                        return (
-                            <button
-                                key={item.name}
-                                onClick={item.action}
-                                className={commonClasses}
-                            >
-                                {content}
-                            </button>
-                        );
-                    }
-
-                    return (
-                        <Link
-                            key={item.name}
-                            href={item.href}
-                            className={commonClasses}
-                        >
-                            {content}
                         </Link>
-                    );
-                })}
+                    </div>
+
+                    {/* Right Items */}
+                    {sideItems.slice(2, 4).map((item) => {
+                        const isActive = item.href ? (pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))) : false;
+                        const content = (
+                            <div className="flex flex-col items-center gap-1 py-2 relative">
+                                {/* Badge */}
+                                {item.badge > 0 && (
+                                    <div className="absolute -top-0.5 right-1/2 translate-x-3">
+                                        <span className="flex items-center justify-center min-w-[18px] h-[18px] px-1.5 bg-gradient-to-r from-[#d4af37] to-[#b8860b] text-white text-[9px] font-bold rounded-full shadow-md">
+                                            {item.badge > 99 ? '99+' : item.badge}
+                                        </span>
+                                    </div>
+                                )}
+
+                                <div className={`transition-all duration-300 ${isActive ? 'text-[#d4af37] -translate-y-0.5 scale-110' : 'text-stone-500'}`}>
+                                    {isActive ? item.activeIcon : item.icon}
+                                </div>
+                                <span className={`text-[10px] font-bold transition-all duration-300 ${isActive ? 'text-[#d4af37]' : 'text-stone-500'}`}>
+                                    {item.name}
+                                </span>
+                            </div>
+                        );
+
+                        const commonClasses = "flex flex-col items-center transition-all duration-300";
+
+                        if (item.action) {
+                            return (
+                                <button key={item.name} onClick={item.action} className={commonClasses}>
+                                    {content}
+                                </button>
+                            );
+                        }
+
+                        return (
+                            <Link key={item.name} href={item.href} className={commonClasses}>
+                                {content}
+                            </Link>
+                        );
+                    })}
+                </div>
             </nav>
         </div>
     );
