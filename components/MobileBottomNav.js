@@ -75,7 +75,7 @@ export default function MobileBottomNav() {
 
     return (
         <div className="md:hidden fixed bottom-0 left-0 right-0 z-[60]">
-            <nav className="relative bg-white border-t border-stone-200 px-3 pb-6 pt-2 shadow-[0_-2px_20px_rgba(0,0,0,0.08)]">
+            <nav className="relative bg-white border-t border-stone-200 px-3 pb-3 pt-2 shadow-[0_-2px_20px_rgba(0,0,0,0.08)]">
                 {/* Navigation Grid */}
                 <div className="grid grid-cols-5 items-center h-16">
                     {/* Left Items */}
@@ -126,7 +126,7 @@ export default function MobileBottomNav() {
                                 <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37] to-[#b8860b] rounded-full blur-lg opacity-40 group-hover:opacity-60 transition-opacity" />
 
                                 {/* Main Circular Button */}
-                                <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-[#d4af37] via-[#f9e29c] to-[#b8860b] flex flex-col items-center justify-center shadow-2xl border-4 border-white group-hover:scale-105 transition-transform">
+                                <div className="relative w-20 h-20 rounded-full bg-white flex flex-col items-center justify-center shadow-2xl border-4 border-stone-200 group-hover:scale-105 transition-transform">
                                     {/* Kaveri Logo */}
                                     <div className="mb-1">
                                         <Image
@@ -139,7 +139,7 @@ export default function MobileBottomNav() {
                                     </div>
 
                                     {/* Menu Text Inside Circle */}
-                                    <span className="text-[9px] font-black uppercase tracking-wider text-stone-900">
+                                    <span className="text-[9px] font-black uppercase tracking-wider text-stone-700">
                                         Menu
                                     </span>
                                 </div>
