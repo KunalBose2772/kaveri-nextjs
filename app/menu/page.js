@@ -70,6 +70,7 @@ export default function MenuPage() {
     const categoriesContainerRef = useRef(null);
     const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
     const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+    const [showCartBanner, setShowCartBanner] = useState(true);
 
     // Handle Scroll for Sticky Header Styles
     useEffect(() => {
@@ -526,8 +527,19 @@ export default function MenuPage() {
                 </div>
 
                 {/* Mobile Bottom Cart Bar - Premium Glass */}
-                {cart.length > 0 && (
+                {cart.length > 0 && showCartBanner && (
                     <div className="lg:hidden fixed bottom-24 left-4 right-4 bg-stone-900/95 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.3)] p-4 z-50 animate-bounce-subtle border border-white/10">
+                        {/* Close Button */}
+                        <button
+                            onClick={() => setShowCartBanner(false)}
+                            className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-stone-800 border-2 border-white/10 flex items-center justify-center text-white hover:bg-red-500 hover:border-red-600 transition-all duration-300 shadow-lg group"
+                            aria-label="Close cart banner"
+                        >
+                            <svg className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+
                         <div className="flex items-center justify-between gap-4">
                             <div className="flex flex-col">
                                 <span className="text-[10px] text-stone-400 uppercase font-bold tracking-wider">{cartCount} ITEMS</span>
