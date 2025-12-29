@@ -5,12 +5,12 @@ import { locations } from '../data/locations';
 
 export default function Home() {
   return (
-    <div className="flex flex-col lg:flex-row h-screen w-screen overflow-hidden bg-stone-900">
+    <div className="flex flex-col lg:flex-row min-h-screen lg:h-screen w-full overflow-x-hidden bg-stone-900">
       {Object.values(locations).map((loc) => (
         <Link
           href={`/${loc.slug}`}
           key={loc.slug}
-          className="relative flex-1 group transition-all duration-700 ease-out hover:flex-[1.2] lg:hover:flex-[1.5] overflow-hidden border-b lg:border-b-0 lg:border-r border-white/10 last:border-0"
+          className="relative flex-1 min-h-[50vh] lg:min-h-0 group transition-all duration-700 ease-out hover:flex-[1.2] lg:hover:flex-[1.5] overflow-hidden border-b lg:border-b-0 lg:border-r border-white/10 last:border-0"
         >
           {/* Background Image */}
           <div className="absolute inset-0">
@@ -26,31 +26,29 @@ export default function Home() {
           </div>
 
           {/* Glass Content Card */}
-          <div className="absolute inset-0 flex items-center justify-center p-6 md:p-12">
-            <div className="w-full max-w-md p-8 md:p-10 rounded-[2rem] bg-white/10 backdrop-blur-md border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] text-center transform translate-y-8 group-hover:translate-y-0 opacity-90 group-hover:opacity-100 transition-all duration-500 ease-out flex flex-col items-center">
+          <div className="absolute inset-0 flex items-center justify-center p-4 sm:p-6 md:p-12">
+            <div className="w-full max-w-md p-6 sm:p-8 md:p-10 rounded-2xl md:rounded-[2rem] bg-white/10 backdrop-blur-md border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] text-center transform translate-y-4 sm:translate-y-8 group-hover:translate-y-0 opacity-90 group-hover:opacity-100 transition-all duration-500 ease-out flex flex-col items-center">
 
               {/* Tagline */}
-              <span className="inline-block py-1 px-3 mb-4 rounded-full border border-white/20 bg-black/20 text-white/90 text-[10px] uppercase tracking-[0.3em] font-bold backdrop-blur-sm">
+              <span className="inline-block py-1 px-3 mb-3 sm:mb-4 rounded-full border border-white/20 bg-black/20 text-white/90 text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.3em] font-bold backdrop-blur-sm">
                 {loc.tagline}
               </span>
 
               {/* Title */}
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white italic mb-4 drop-shadow-lg">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-white italic mb-3 sm:mb-4 drop-shadow-lg">
                 {loc.name}
               </h2>
 
               {/* Divider */}
-              <div className={`w-12 h-1 rounded-full mb-6 bg-${loc.color}-500 shadow-glow`} />
+              <div className={`w-10 sm:w-12 h-0.5 sm:h-1 rounded-full mb-4 sm:mb-6 bg-gradient-to-r from-[#d4af37] to-[#f9e29c] shadow-lg`} />
 
-              {/* Description (Hidden on mobile initially, shown on hover/desktop?) 
-                                Keep it simple as per original design 
-                            */}
-              <p className="text-stone-300 text-sm md:text-base font-light mb-8 max-w-xs mx-auto leading-relaxed">
+              {/* Description */}
+              <p className="text-stone-300 text-xs sm:text-sm md:text-base font-light mb-6 sm:mb-8 max-w-xs mx-auto leading-relaxed px-2">
                 {loc.description}
               </p>
 
               {/* Button */}
-              <button className="px-8 py-3 bg-white text-stone-900 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-amber-500 hover:text-white transition-all transform hover:scale-105 shadow-xl">
+              <button className="px-6 sm:px-8 py-2.5 sm:py-3 bg-white text-stone-900 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-widest hover:bg-amber-500 hover:text-white transition-all transform hover:scale-105 shadow-xl">
                 Explore
               </button>
             </div>
