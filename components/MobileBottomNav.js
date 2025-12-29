@@ -2,28 +2,16 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useModal } from '../context/ModalContext';
+import { useShop } from '../context/ShopContext';
 
 export default function MobileBottomNav() {
     const pathname = usePathname();
-    const { openWishlist } = useModal();
+    const { openWishlist, openCart } = useModal();
+    const { wishlistCount, cartCount } = useShop();
 
     if (pathname === '/') return null;
 
     const navItems = [
-        {
-            name: 'Home',
-            href: '/',
-            icon: (
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-            ),
-            activeIcon: (
-                <svg className="w-6 h-6" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-                </svg>
-            )
-        },
         {
             name: 'Menu',
             href: '/menu',
@@ -39,8 +27,24 @@ export default function MobileBottomNav() {
             )
         },
         {
+            name: 'Cart',
+            action: openCart,
+            badge: cartCount,
+            icon: (
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+            ),
+            activeIcon: (
+                <svg className="w-6 h-6" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                </svg>
+            )
+        },
+        {
             name: 'Wishlist',
             action: openWishlist,
+            badge: wishlistCount,
             icon: (
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -76,6 +80,15 @@ export default function MobileBottomNav() {
 
                     const content = (
                         <>
+                            {/* Badge */}
+                            {item.badge > 0 && (
+                                <div className="absolute -top-1 -right-1 z-10">
+                                    <span className="flex items-center justify-center min-w-[18px] h-[18px] px-1 bg-gradient-to-r from-[#d4af37] to-[#b8860b] text-white text-[9px] font-bold rounded-full shadow-lg">
+                                        {item.badge > 99 ? '99+' : item.badge}
+                                    </span>
+                                </div>
+                            )}
+
                             <div className={`transition-transform duration-300 ${isActive ? '-translate-y-1' : ''}`}>
                                 {isActive ? item.activeIcon : item.icon}
                             </div>
