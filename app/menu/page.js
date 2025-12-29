@@ -127,6 +127,12 @@ export default function MenuPage() {
         return () => observer.disconnect();
     }, []);
 
+    // Show cart banner when items are added after closing it
+    useEffect(() => {
+        if (cartCount > 0) {
+            setShowCartBanner(true);
+        }
+    }, [cartCount]);
 
 
     return (
