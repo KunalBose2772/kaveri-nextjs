@@ -75,9 +75,9 @@ export default function MobileBottomNav() {
 
     return (
         <div className="md:hidden fixed bottom-0 left-0 right-0 z-[60]">
-            <nav className="relative bg-white border-t border-stone-200 px-3 pb-safe shadow-[0_-2px_20px_rgba(0,0,0,0.08)]">
+            <nav className="relative bg-white border-t border-stone-200 px-3 pb-6 pt-2 shadow-[0_-2px_20px_rgba(0,0,0,0.08)]">
                 {/* Navigation Grid */}
-                <div className="grid grid-cols-5 items-end h-20">
+                <div className="grid grid-cols-5 items-center h-16">
                     {/* Left Items */}
                     {sideItems.slice(0, 2).map((item) => {
                         const isActive = item.href ? (pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))) : false;
@@ -118,28 +118,28 @@ export default function MobileBottomNav() {
                         );
                     })}
 
-                    {/* Center Menu Button - Circular with Logo */}
-                    <div className="flex justify-center -mt-8">
+                    {/* Center Menu Button - Circular with Logo BULGING OUT */}
+                    <div className="flex justify-center -mt-16">
                         <Link href="/menu">
                             <div className="relative group">
                                 {/* Glow Effect */}
-                                <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37] to-[#b8860b] rounded-full blur-md opacity-50 group-hover:opacity-75 transition-opacity" />
+                                <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37] to-[#b8860b] rounded-full blur-lg opacity-40 group-hover:opacity-60 transition-opacity" />
 
-                                {/* Main Button */}
-                                <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-[#d4af37] via-[#f9e29c] to-[#b8860b] flex items-center justify-center shadow-2xl border-4 border-white group-hover:scale-105 transition-transform">
+                                {/* Main Circular Button */}
+                                <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-[#d4af37] via-[#f9e29c] to-[#b8860b] flex flex-col items-center justify-center shadow-2xl border-4 border-white group-hover:scale-105 transition-transform">
                                     {/* Kaveri Logo */}
-                                    <Image
-                                        src="/assets/main_logo.png"
-                                        alt="Menu"
-                                        width={40}
-                                        height={40}
-                                        className="object-contain drop-shadow-md"
-                                    />
-                                </div>
+                                    <div className="mb-1">
+                                        <Image
+                                            src="/assets/main_logo.png"
+                                            alt="Menu"
+                                            width={32}
+                                            height={32}
+                                            className="object-contain drop-shadow-lg"
+                                        />
+                                    </div>
 
-                                {/* Label */}
-                                <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                                    <span className={`text-[10px] font-bold ${pathname === '/menu' ? 'text-[#d4af37]' : 'text-stone-500'}`}>
+                                    {/* Menu Text Inside Circle */}
+                                    <span className="text-[9px] font-black uppercase tracking-wider text-stone-900">
                                         Menu
                                     </span>
                                 </div>
