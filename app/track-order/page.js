@@ -1,10 +1,10 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function TrackOrderPage() {
+function TrackOrderContent() {
     const searchParams = useSearchParams();
     const router = useRouter();
     const [orderId, setOrderId] = useState(searchParams.get('id') || '');
@@ -237,5 +237,20 @@ export default function TrackOrderPage() {
 
             </div>
         </div>
+    );
+}
+
+export default function TrackOrderPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-stone-50 flex items-center justify-center">
+                <div className="text-center">
+                    <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-[#d4af37] border-t-transparent"></div>
+                    <p className="mt-4 text-stone-600">Loading...</p>
+                </div>
+            </div>
+        }>
+            <TrackOrderContent />
+        </Suspense>
     );
 }
