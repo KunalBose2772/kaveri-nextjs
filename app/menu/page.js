@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useShop } from '../../context/ShopContext';
 
 // --- DATA SOURCE (Consolidated from Ashok Nagar components) ---
@@ -69,7 +70,6 @@ export default function MenuPage() {
     const [isScrolled, setIsScrolled] = useState(false);
     const categoriesContainerRef = useRef(null);
     const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
-    const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
     const [showCartBanner, setShowCartBanner] = useState(true);
 
     // Handle Scroll for Sticky Header Styles
@@ -518,12 +518,12 @@ export default function MenuPage() {
                                                 <span>Total</span>
                                                 <span>₹{Math.round(cartTotal * 1.05)}</span>
                                             </div>
-                                            <button
-                                                onClick={() => setIsCheckoutOpen(true)}
-                                                className="w-full py-4 mt-4 bg-gradient-to-br from-[#d4af37] via-[#f9e29c] to-[#d4af37] text-stone-950 font-black uppercase text-xs tracking-[0.2em] rounded-xl hover:shadow-lg hover:translate-y-[-2px] transition-all active:scale-95 shadow-[0_10px_20px_rgba(212,175,55,0.2)]"
+                                            <Link
+                                                href="/checkout"
+                                                className="block w-full py-4 mt-4 bg-gradient-to-br from-[#d4af37] via-[#f9e29c] to-[#d4af37] text-stone-950 font-black uppercase text-xs tracking-[0.2em] rounded-xl hover:shadow-lg hover:translate-y-[-2px] transition-all active:scale-95 shadow-[0_10px_20px_rgba(212,175,55,0.2)] text-center"
                                             >
                                                 Proceed to Checkout
-                                            </button>
+                                            </Link>
                                         </div>
                                     </>
                                 )}
@@ -551,107 +551,20 @@ export default function MenuPage() {
                                 <span className="text-[10px] text-stone-400 uppercase font-bold tracking-wider">{cartCount} ITEMS</span>
                                 <span className="text-xl font-serif text-white italic">₹{Math.round(cartTotal * 1.05)}</span>
                             </div>
-                            <button
-                                onClick={() => setIsCheckoutOpen(true)}
+                            <Link
+                                href="/checkout"
                                 className="px-8 py-3 bg-gradient-to-r from-[#d4af37] to-[#b8860b] text-white font-bold uppercase text-[10px] tracking-widest rounded-xl shadow-lg transform hover:scale-105 transition-transform flex items-center gap-2"
                             >
                                 Checkout
                                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                 </svg>
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 )}
 
-                {/* Checkout Modal - Bright Frosted Glass */}
-                {isCheckoutOpen && (
-                    <div className="fixed inset-0 z-[100] flex items-end md:items-center justify-center sm:p-4">
-                        {/* Backdrop */}
-                        <div
-                            className="absolute inset-0 bg-stone-900/40 backdrop-blur-sm transition-opacity"
-                            onClick={() => setIsCheckoutOpen(false)}
-                        />
 
-                        {/* Modal Content */}
-                        <div className="relative w-full md:w-[480px] bg-white/95 backdrop-blur-2xl md:rounded-3xl rounded-t-3xl shadow-[0_0_50px_rgba(0,0,0,0.2)] flex flex-col max-h-[90vh] animate-slide-up border border-white/40">
-
-                            {/* Header */}
-                            <div className="flex items-center justify-between p-6 border-b border-stone-200/60">
-                                <div>
-                                    <h3 className="text-2xl font-serif font-bold text-stone-800">Checkout</h3>
-                                    <p className="text-stone-400 text-xs font-bold uppercase tracking-wider mt-1">{cartCount} Items found in cart</p>
-                                </div>
-                                <button
-                                    onClick={() => setIsCheckoutOpen(false)}
-                                    className="w-10 h-10 rounded-full bg-stone-100 flex items-center justify-center text-stone-400 hover:bg-stone-200 hover:text-stone-600 transition-colors"
-                                >
-                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </button>
-                            </div>
-
-                            {/* Cart Items (Scrollable) */}
-                            <div className="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
-                                {cart.length === 0 ? (
-                                    <div className="text-center py-10 text-stone-400">
-                                        Your cart is empty.
-                                    </div>
-                                ) : (
-                                    <div className="space-y-4">
-                                        {cart.map(item => (
-                                            <div key={item.id} className="flex gap-4">
-                                                <div className="w-16 h-16 relative rounded-xl overflow-hidden shrink-0 border border-stone-100 shadow-sm">
-                                                    <Image src={item.image} alt={item.name} fill className="object-cover" />
-                                                </div>
-                                                <div className="flex-1 flex flex-col justify-between py-0.5">
-                                                    <div className="flex justify-between items-start">
-                                                        <h4 className="font-bold text-stone-800 text-sm">{item.name}</h4>
-                                                        <span className="font-bold text-stone-900 text-sm">₹{item.price * item.quantity}</span>
-                                                    </div>
-                                                    <div className="flex justify-between items-center mt-2">
-                                                        <span className="text-xs text-stone-400">₹{item.price} / item</span>
-                                                        <div className="flex items-center bg-stone-50 rounded-lg border border-stone-200 h-7">
-                                                            <button onClick={() => removeFromCart(item.id)} className="w-7 flex items-center justify-center text-stone-500 hover:text-amber-600 font-bold">-</button>
-                                                            <span className="px-1 text-xs font-bold text-stone-900 min-w-[20px] text-center">{item.quantity}</span>
-                                                            <button onClick={() => addToCart(item)} className="w-7 flex items-center justify-center text-stone-500 hover:text-amber-600 font-bold">+</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-
-                                {/* Simple Form Details */}
-                                {cart.length > 0 && (
-                                    <div className="pt-6 border-t border-stone-100 space-y-4">
-                                        <h5 className="font-serif font-bold text-stone-800">Your Details</h5>
-                                        <div className="grid grid-cols-2 gap-4">
-                                            <input type="text" placeholder="Name" className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 transition-colors" />
-                                            <input type="tel" placeholder="Phone" className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 transition-colors" />
-                                        </div>
-                                        <textarea placeholder="Special Instructions (Optional)" rows="2" className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 transition-colors resize-none"></textarea>
-                                    </div>
-                                )}
-                            </div>
-
-                            {/* Footer Totals */}
-                            {cart.length > 0 && (
-                                <div className="p-6 bg-white/50 backdrop-blur-md border-t border-stone-100 rounded-b-3xl">
-                                    <div className="flex justify-between items-end mb-4">
-                                        <span className="text-sm font-bold text-stone-500 uppercase tracking-wider">Total Amount</span>
-                                        <span className="text-3xl font-serif font-bold text-stone-900">₹{Math.round(cartTotal * 1.05)}</span>
-                                    </div>
-                                    <button className="w-full py-4 bg-stone-900 text-white font-bold uppercase tracking-[0.2em] rounded-xl hover:bg-amber-500 transition-colors shadow-lg">
-                                        Place Order
-                                    </button>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                )}
 
                 <style jsx>{`
                 .custom-scrollbar::-webkit-scrollbar {

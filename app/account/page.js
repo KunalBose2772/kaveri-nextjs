@@ -4,100 +4,57 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function AccountPage() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [activeTab, setActiveTab] = useState('profile');
+    const [isLoggedIn, setIsLoggedIn] = useState(true); // Set to false for login view
+    const [activeTab, setActiveTab] = useState('profile'); // profile, orders, addresses, settings
 
-    // Mock user data
-    const user = {
-        name: 'Rahul Sharma',
-        email: 'rahul.sharma@email.com',
-        phone: '+91 98765 43210',
-        avatar: '/assets/main_logo.png',
-        memberSince: 'January 2024',
-        totalOrders: 24,
-        points: 1250
-    };
+    const [profileData, setProfileData] = useState({
+        name: 'Kunal Bose',
+        email: 'kunal@example.com',
+        phone: '+91-98765 43210',
+        memberSince: 'January 2023'
+    });
 
-    const orders = [
-        { id: '#ORD-2024-001', date: '28 Dec 2024', items: 3, total: 1245, status: 'Delivered' },
-        { id: '#ORD-2024-002', date: '25 Dec 2024', items: 5, total: 2150, status: 'Delivered' },
-        { id: '#ORD-2024-003', date: '20 Dec 2024', items: 2, total: 890, status: 'Cancelled' }
-    ];
+    const [orders] = useState([
+        { id: 'KAV12345678', date: '2024-12-29', items: 3, total: 1547, status: 'Delivered' },
+        { id: 'KAV87654321', date: '2024-12-25', items: 5, total: 2890, status: 'Delivered' },
+        { id: 'KAV11223344', date: '2024-12-20', items: 2, total: 895, status: 'Delivered' }
+    ]);
 
-    const addresses = [
-        { id: 1, label: 'Home', address: '123, Street Name, Ashok Nagar, Ranchi - 834002', default: true },
-        { id: 2, label: 'Office', address: '456, Building Name, Kanke Road, Ranchi - 834008', default: false }
-    ];
+    const [addresses] = useState([
+        { id: 1, name: 'Home', address: 'Freds Palace, Ashok Nagar, Road No.3', city: 'Ranchi', pincode: '834002', isDefault: true },
+        { id: 2, name: 'Office', address: 'HEC Colony, Sector 2', city: 'Ranchi', pincode: '834004', isDefault: false }
+    ]);
 
+    // Login/Signup View
     if (!isLoggedIn) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-stone-50 to-stone-100 pt-24 pb-32 px-4">
-                <div className="max-w-md mx-auto">
-                    {/* Logo Section */}
-                    <div className="text-center mb-8">
-                        <div className="w-24 h-24 mx-auto mb-4 relative">
-                            <Image
-                                src="/assets/main_logo.png"
-                                alt="Kaveri"
-                                fill
-                                className="object-contain"
-                            />
-                        </div>
-                        <h1 className="text-3xl font-serif italic text-stone-900 mb-2">Welcome to Kaveri</h1>
-                        <p className="text-stone-500 text-sm">Sign in to continue your culinary journey</p>
-                    </div>
+            <div className="min-h-screen bg-stone-50 flex items-center justify-center px-4 py-12">
+                <div className="max-w-md w-full bg-white rounded-3xl p-8 md:p-12 shadow-xl">
+                    <h1 className="text-3xl font-serif italic text-stone-900 mb-2 text-center">Welcome Back</h1>
+                    <p className="text-stone-600 text-center mb-8">Sign in to your Kaveri account</p>
 
-                    {/* Login Form */}
-                    <div className="bg-white rounded-3xl shadow-2xl p-8 border border-stone-100">
-                        <div className="space-y-4">
-                            <div>
-                                <label className="block text-sm font-bold text-stone-700 mb-2 uppercase tracking-wider">
-                                    Phone Number
-                                </label>
-                                <input
-                                    type="tel"
-                                    placeholder="+91 98765 43210"
-                                    className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20 outline-none transition-all"
-                                />
-                            </div>
+                    <form className="space-y-4">
+                        <input
+                            type="email"
+                            placeholder="Email Address"
+                            className="w-full px-6 py-4 rounded-full border border-stone-200 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20 outline-none transition-all text-stone-900 bg-stone-50"
+                        />
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            className="w-full px-6 py-4 rounded-full border border-stone-200 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20 outline-none transition-all text-stone-900 bg-stone-50"
+                        />
+                        <button
+                            type="submit"
+                            onClick={() => setIsLoggedIn(true)}
+                            className="w-full px-8 py-4 bg-gradient-to-r from-[#d4af37] to-[#b8860b] text-white rounded-full font-bold uppercase tracking-wider text-sm shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+                        >
+                            Sign In
+                        </button>
+                    </form>
 
-                            <div>
-                                <label className="block text-sm font-bold text-stone-700 mb-2 uppercase tracking-wider">
-                                    Password
-                                </label>
-                                <input
-                                    type="password"
-                                    placeholder="Enter your password"
-                                    className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20 outline-none transition-all"
-                                />
-                            </div>
-
-                            <button
-                                onClick={() => setIsLoggedIn(true)}
-                                className="w-full py-4 bg-gradient-to-r from-[#d4af37] to-[#b8860b] text-white font-bold uppercase text-sm tracking-widest rounded-xl hover:shadow-xl hover:scale-[1.02] transition-all"
-                            >
-                                Sign In
-                            </button>
-
-                            <div className="text-center">
-                                <button className="text-sm text-stone-500 hover:text-[#d4af37] transition-colors">
-                                    Forgot Password?
-                                </button>
-                            </div>
-
-                            <div className="relative my-6">
-                                <div className="absolute inset-0 flex items-center">
-                                    <div className="w-full border-t border-stone-200"></div>
-                                </div>
-                                <div className="relative flex justify-center text-xs uppercase">
-                                    <span className="bg-white px-2 text-stone-400 font-bold">Or</span>
-                                </div>
-                            </div>
-
-                            <button className="w-full py-3 border-2 border-stone-200 text-stone-700 font-bold uppercase text-sm tracking-widest rounded-xl hover:bg-stone-50 transition-all">
-                                Create New Account
-                            </button>
-                        </div>
+                    <div className="mt-6 text-center">
+                        <p className="text-stone-600">Don't have an account? <button className="text-[#d4af37] font-bold hover:underline">Sign Up</button></p>
                     </div>
                 </div>
             </div>
@@ -105,241 +62,249 @@ export default function AccountPage() {
     }
 
     return (
-        <div className="min-h-screen bg-stone-50 pt-24 pb-32">
-            <div className="max-w-5xl mx-auto px-4">
-                {/* Profile Header */}
-                <div className="bg-gradient-to-r from-[#d4af37] to-[#b8860b] rounded-3xl p-8 mb-6 shadow-2xl">
-                    <div className="flex items-center gap-6">
-                        <div className="w-24 h-24 rounded-full bg-white p-2 shadow-xl">
-                            <Image
-                                src={user.avatar}
-                                alt={user.name}
-                                width={88}
-                                height={88}
-                                className="rounded-full object-cover"
-                            />
-                        </div>
-                        <div className="flex-1">
-                            <h1 className="text-3xl font-serif italic text-white mb-1">{user.name}</h1>
-                            <p className="text-white/80 text-sm mb-3">Member since {user.memberSince}</p>
-                            <div className="flex gap-6">
-                                <div className="bg-white/20 backdrop-blur-sm rounded-xl px-4 py-2">
-                                    <div className="text-2xl font-bold text-white">{user.totalOrders}</div>
-                                    <div className="text-xs text-white/80 uppercase tracking-wider">Orders</div>
-                                </div>
-                                <div className="bg-white/20 backdrop-blur-sm rounded-xl px-4 py-2">
-                                    <div className="text-2xl font-bold text-white">{user.points}</div>
-                                    <div className="text-xs text-white/80 uppercase tracking-wider">Points</div>
-                                </div>
-                            </div>
-                        </div>
-                        <button
-                            onClick={() => setIsLoggedIn(false)}
-                            className="px-6 py-2 bg-white text-stone-900 rounded-xl font-bold text-sm hover:bg-stone-100 transition-all"
-                        >
-                            Logout
-                        </button>
-                    </div>
+        <div className="min-h-screen bg-stone-50 py-12 px-4">
+            <div className="max-w-7xl mx-auto">
+
+                {/* Header */}
+                <div className="text-center mb-12">
+                    <h1 className="text-4xl md:text-5xl font-serif italic text-stone-900 mb-4">My Account</h1>
+                    <p className="text-stone-600">Manage your profile, orders, and preferences</p>
                 </div>
 
-                {/* Tabs */}
-                <div className="bg-white rounded-2xl shadow-lg mb-6 p-2 flex gap-2 overflow-x-auto">
-                    {[
-                        { id: 'profile', label: 'Profile', icon: '👤' },
-                        { id: 'orders', label: 'Orders', icon: '📦' },
-                        { id: 'addresses', label: 'Addresses', icon: '📍' },
-                        { id: 'settings', label: 'Settings', icon: '⚙️' }
-                    ].map(tab => (
-                        <button
-                            key={tab.id}
-                            onClick={() => setActiveTab(tab.id)}
-                            className={`flex-1 min-w-[120px] px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-wider transition-all ${activeTab === tab.id
-                                    ? 'bg-gradient-to-r from-[#d4af37] to-[#b8860b] text-white shadow-lg'
-                                    : 'text-stone-500 hover:bg-stone-50'
-                                }`}
-                        >
-                            <span className="mr-2">{tab.icon}</span>
-                            {tab.label}
-                        </button>
-                    ))}
-                </div>
+                <div className="grid lg:grid-cols-4 gap-8">
 
-                {/* Tab Content */}
-                <div className="bg-white rounded-2xl shadow-lg p-6">
-                    {/* Profile Tab */}
-                    {activeTab === 'profile' && (
-                        <div className="space-y-6">
-                            <h2 className="text-2xl font-serif font-bold text-stone-900 mb-6">Personal Information</h2>
-
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className="block text-sm font-bold text-stone-700 mb-2 uppercase tracking-wider">
-                                        Full Name
-                                    </label>
-                                    <input
-                                        type="text"
-                                        defaultValue={user.name}
-                                        className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20 outline-none transition-all"
-                                    />
+                    {/* Sidebar */}
+                    <div className="lg:col-span-1">
+                        <div className="bg-white rounded-3xl p-6 shadow-xl">
+                            {/* Profile Summary */}
+                            <div className="text-center mb-6 pb-6 border-b border-stone-200">
+                                <div className="w-20 h-20 bg-gradient-to-br from-[#d4af37] to-[#b8860b] rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-4">
+                                    {profileData.name.charAt(0)}
                                 </div>
-                                <div>
-                                    <label className="block text-sm font-bold text-stone-700 mb-2 uppercase tracking-wider">
-                                        Email
-                                    </label>
-                                    <input
-                                        type="email"
-                                        defaultValue={user.email}
-                                        className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20 outline-none transition-all"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-bold text-stone-700 mb-2 uppercase tracking-wider">
-                                        Phone
-                                    </label>
-                                    <input
-                                        type="tel"
-                                        defaultValue={user.phone}
-                                        className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20 outline-none transition-all"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-bold text-stone-700 mb-2 uppercase tracking-wider">
-                                        Date of Birth
-                                    </label>
-                                    <input
-                                        type="date"
-                                        className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20 outline-none transition-all"
-                                    />
-                                </div>
+                                <h3 className="font-bold text-stone-900 text-lg">{profileData.name}</h3>
+                                <p className="text-sm text-stone-500">{profileData.email}</p>
                             </div>
 
-                            <button className="px-8 py-3 bg-gradient-to-r from-[#d4af37] to-[#b8860b] text-white font-bold uppercase text-sm tracking-widest rounded-xl hover:shadow-xl transition-all">
-                                Save Changes
-                            </button>
-                        </div>
-                    )}
-
-                    {/* Orders Tab */}
-                    {activeTab === 'orders' && (
-                        <div className="space-y-4">
-                            <h2 className="text-2xl font-serif font-bold text-stone-900 mb-6">Order History</h2>
-
-                            {orders.map(order => (
-                                <div key={order.id} className="border border-stone-200 rounded-2xl p-6 hover:shadow-lg transition-all">
-                                    <div className="flex justify-between items-start mb-4">
-                                        <div>
-                                            <h3 className="font-bold text-stone-900 text-lg">{order.id}</h3>
-                                            <p className="text-sm text-stone-500">{order.date}</p>
-                                        </div>
-                                        <span className={`px-4 py-1 rounded-full text-xs font-bold uppercase ${order.status === 'Delivered' ? 'bg-green-100 text-green-700' :
-                                                order.status === 'Cancelled' ? 'bg-red-100 text-red-700' :
-                                                    'bg-amber-100 text-amber-700'
-                                            }`}>
-                                            {order.status}
-                                        </span>
-                                    </div>
-                                    <div className="flex justify-between items-center">
-                                        <div className="text-sm text-stone-600">
-                                            {order.items} items • ₹{order.total}
-                                        </div>
-                                        <Link href={`/orders/${order.id}`} className="text-[#d4af37] hover:text-[#b8860b] font-bold text-sm">
-                                            View Details →
-                                        </Link>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-
-                    {/* Addresses Tab */}
-                    {activeTab === 'addresses' && (
-                        <div className="space-y-4">
-                            <div className="flex justify-between items-center mb-6">
-                                <h2 className="text-2xl font-serif font-bold text-stone-900">Saved Addresses</h2>
-                                <button className="px-6 py-2 bg-gradient-to-r from-[#d4af37] to-[#b8860b] text-white font-bold text-sm rounded-xl hover:shadow-lg transition-all">
-                                    + Add New
+                            {/* Navigation */}
+                            <nav className="space-y-2">
+                                <button
+                                    onClick={() => setActiveTab('profile')}
+                                    className={`w-full text-left px-4 py-3 rounded-xl font-bold transition-all ${activeTab === 'profile' ? 'bg-amber-50 text-amber-700' : 'text-stone-600 hover:bg-stone-50'
+                                        }`}
+                                >
+                                    📝 Profile
                                 </button>
-                            </div>
+                                <button
+                                    onClick={() => setActiveTab('orders')}
+                                    className={`w-full text-left px-4 py-3 rounded-xl font-bold transition-all ${activeTab === 'orders' ? 'bg-amber-50 text-amber-700' : 'text-stone-600 hover:bg-stone-50'
+                                        }`}
+                                >
+                                    📦 Orders
+                                </button>
+                                <button
+                                    onClick={() => setActiveTab('addresses')}
+                                    className={`w-full text-left px-4 py-3 rounded-xl font-bold transition-all ${activeTab === 'addresses' ? 'bg-amber-50 text-amber-700' : 'text-stone-600 hover:bg-stone-50'
+                                        }`}
+                                >
+                                    📍 Addresses
+                                </button>
+                                <button
+                                    onClick={() => setActiveTab('settings')}
+                                    className={`w-full text-left px-4 py-3 rounded-xl font-bold transition-all ${activeTab === 'settings' ? 'bg-amber-50 text-amber-700' : 'text-stone-600 hover:bg-stone-50'
+                                        }`}
+                                >
+                                    ⚙️ Settings
+                                </button>
+                                <button
+                                    onClick={() => setIsLoggedIn(false)}
+                                    className="w-full text-left px-4 py-3 rounded-xl font-bold text-red-600 hover:bg-red-50 transition-all"
+                                >
+                                    🚪 Logout
+                                </button>
+                            </nav>
+                        </div>
+                    </div>
 
-                            {addresses.map(address => (
-                                <div key={address.id} className="border border-stone-200 rounded-2xl p-6 hover:shadow-lg transition-all">
-                                    <div className="flex justify-between items-start">
-                                        <div className="flex-1">
-                                            <div className="flex items-center gap-2 mb-2">
-                                                <h3 className="font-bold text-stone-900">{address.label}</h3>
-                                                {address.default && (
-                                                    <span className="px-2 py-0.5 bg-amber-100 text-amber-700 text-xs font-bold rounded-full">
-                                                        Default
+                    {/* Main Content */}
+                    <div className="lg:col-span-3">
+                        <div className="bg-white rounded-3xl p-6 md:p-8 shadow-xl">
+
+                            {/* Profile Tab */}
+                            {activeTab === 'profile' && (
+                                <div>
+                                    <h2 className="text-2xl font-serif italic text-stone-900 mb-6">Profile Information</h2>
+                                    <div className="space-y-4">
+                                        <div>
+                                            <label className="block text-sm font-bold text-stone-700 mb-2">Full Name</label>
+                                            <input
+                                                type="text"
+                                                value={profileData.name}
+                                                onChange={(e) => setProfileData({ ...profileData, name: e.target.value })}
+                                                className="w-full px-6 py-4 rounded-full border border-stone-200 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20 outline-none transition-all text-stone-900 bg-stone-50"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-bold text-stone-700 mb-2">Email Address</label>
+                                            <input
+                                                type="email"
+                                                value={profileData.email}
+                                                onChange={(e) => setProfileData({ ...profileData, email: e.target.value })}
+                                                className="w-full px-6 py-4 rounded-full border border-stone-200 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20 outline-none transition-all text-stone-900 bg-stone-50"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-bold text-stone-700 mb-2">Phone Number</label>
+                                            <input
+                                                type="tel"
+                                                value={profileData.phone}
+                                                onChange={(e) => setProfileData({ ...profileData, phone: e.target.value })}
+                                                className="w-full px-6 py-4 rounded-full border border-stone-200 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20 outline-none transition-all text-stone-900 bg-stone-50"
+                                            />
+                                        </div>
+                                        <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4">
+                                            <p className="text-sm text-amber-700 font-bold">Member Since: {profileData.memberSince}</p>
+                                        </div>
+                                        <button className="px-8 py-3 bg-gradient-to-r from-[#d4af37] to-[#b8860b] text-white rounded-full font-bold uppercase tracking-wider text-sm shadow-lg hover:shadow-xl hover:scale-105 transition-all">
+                                            Save Changes
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Orders Tab */}
+                            {activeTab === 'orders' && (
+                                <div>
+                                    <h2 className="text-2xl font-serif italic text-stone-900 mb-6">Order History</h2>
+                                    <div className="space-y-4">
+                                        {orders.map(order => (
+                                            <div key={order.id} className="border border-stone-200 rounded-2xl p-6 hover:border-amber-200 transition-all">
+                                                <div className="flex flex-wrap justify-between items-start gap-4 mb-4">
+                                                    <div>
+                                                        <p className="text-sm text-stone-500 mb-1">Order ID</p>
+                                                        <p className="font-bold text-stone-900 font-mono">{order.id}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-sm text-stone-500 mb-1">Date</p>
+                                                        <p className="font-bold text-stone-900">{order.date}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-sm text-stone-500 mb-1">Items</p>
+                                                        <p className="font-bold text-stone-900">{order.items}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-sm text-stone-500 mb-1">Total</p>
+                                                        <p className="font-bold text-stone-900">₹{order.total}</p>
+                                                    </div>
+                                                    <div>
+                                                        <span className="inline-block px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-bold">
+                                                            {order.status}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div className="flex gap-3">
+                                                    <Link
+                                                        href={`/track-order?id=${order.id}`}
+                                                        className="px-6 py-2 bg-stone-900 text-white rounded-lg font-bold text-sm hover:bg-[#d4af37] transition-colors"
+                                                    >
+                                                        Track
+                                                    </Link>
+                                                    <button className="px-6 py-2 border-2 border-stone-300 text-stone-700 hover:border-[#d4af37] hover:text-[#d4af37] rounded-lg font-bold text-sm transition-all">
+                                                        Reorder
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Addresses Tab */}
+                            {activeTab === 'addresses' && (
+                                <div>
+                                    <div className="flex justify-between items-center mb-6">
+                                        <h2 className="text-2xl font-serif italic text-stone-900">Saved Addresses</h2>
+                                        <button className="px-6 py-2 bg-gradient-to-r from-[#d4af37] to-[#b8860b] text-white rounded-full font-bold text-sm shadow-lg hover:shadow-xl hover:scale-105 transition-all">
+                                            + Add New
+                                        </button>
+                                    </div>
+                                    <div className="grid md:grid-cols-2 gap-4">
+                                        {addresses.map(addr => (
+                                            <div key={addr.id} className="border border-stone-200 rounded-2xl p-6 hover:border-amber-200 transition-all relative">
+                                                {addr.isDefault && (
+                                                    <span className="absolute top-4 right-4 px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-xs font-bold">
+                                                        DEFAULT
                                                     </span>
                                                 )}
+                                                <h3 className="font-bold text-stone-900 mb-2">{addr.name}</h3>
+                                                <p className="text-stone-600 text-sm mb-1">{addr.address}</p>
+                                                <p className="text-stone-600 text-sm mb-4">{addr.city} - {addr.pincode}</p>
+                                                <div className="flex gap-2">
+                                                    <button className="px-4 py-2 bg-stone-100 text-stone-700 hover:bg-stone-200 rounded-lg font-bold text-sm transition-all">
+                                                        Edit
+                                                    </button>
+                                                    <button className="px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg font-bold text-sm transition-all">
+                                                        Delete
+                                                    </button>
+                                                </div>
                                             </div>
-                                            <p className="text-sm text-stone-600">{address.address}</p>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Settings Tab */}
+                            {activeTab === 'settings' && (
+                                <div>
+                                    <h2 className="text-2xl font-serif italic text-stone-900 mb-6">Settings</h2>
+                                    <div className="space-y-6">
+                                        <div className="border border-stone-200 rounded-2xl p-6">
+                                            <h3 className="font-bold text-stone-900 mb-4">Notifications</h3>
+                                            <div className="space-y-3">
+                                                <label className="flex items-center justify-between cursor-pointer">
+                                                    <span className="text-stone-700">Order updates via Email</span>
+                                                    <input type="checkbox" defaultChecked className="w-5 h-5 text-[#d4af37] rounded" />
+                                                </label>
+                                                <label className="flex items-center justify-between cursor-pointer">
+                                                    <span className="text-stone-700">Promotional offers via SMS</span>
+                                                    <input type="checkbox" defaultChecked className="w-5 h-5 text-[#d4af37] rounded" />
+                                                </label>
+                                                <label className="flex items-center justify-between cursor-pointer">
+                                                    <span className="text-stone-700">Weekly newsletter</span>
+                                                    <input type="checkbox" className="w-5 h-5 text-[#d4af37] rounded" />
+                                                </label>
+                                            </div>
                                         </div>
-                                        <div className="flex gap-2">
-                                            <button className="p-2 text-stone-400 hover:text-[#d4af37] transition-colors">
-                                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                                </svg>
-                                            </button>
-                                            <button className="p-2 text-stone-400 hover:text-red-500 transition-colors">
-                                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                </svg>
-                                            </button>
+
+                                        <div className="border border-stone-200 rounded-2xl p-6">
+                                            <h3 className="font-bold text-stone-900 mb-4">Change Password</h3>
+                                            <div className="space-y-3">
+                                                <input
+                                                    type="password"
+                                                    placeholder="Current Password"
+                                                    className="w-full px-6 py-3 rounded-full border border-stone-200 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20 outline-none transition-all text-stone-900 bg-stone-50"
+                                                />
+                                                <input
+                                                    type="password"
+                                                    placeholder="New Password"
+                                                    className="w-full px-6 py-3 rounded-full border border-stone-200 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20 outline-none transition-all text-stone-900 bg-stone-50"
+                                                />
+                                                <input
+                                                    type="password"
+                                                    placeholder="Confirm New Password"
+                                                    className="w-full px-6 py-3 rounded-full border border-stone-200 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20 outline-none transition-all text-stone-900 bg-stone-50"
+                                                />
+                                                <button className="px-8 py-3 bg-gradient-to-r from-[#d4af37] to-[#b8860b] text-white rounded-full font-bold uppercase tracking-wider text-sm shadow-lg hover:shadow-xl hover:scale-105 transition-all">
+                                                    Update Password
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            ))}
+                            )}
+
                         </div>
-                    )}
+                    </div>
 
-                    {/* Settings Tab */}
-                    {activeTab === 'settings' && (
-                        <div className="space-y-6">
-                            <h2 className="text-2xl font-serif font-bold text-stone-900 mb-6">Account Settings</h2>
-
-                            <div className="space-y-4">
-                                <div className="flex justify-between items-center p-4 border border-stone-200 rounded-xl hover:shadow-md transition-all">
-                                    <div>
-                                        <h3 className="font-bold text-stone-900">Email Notifications</h3>
-                                        <p className="text-sm text-stone-500">Receive order updates via email</p>
-                                    </div>
-                                    <label className="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" className="sr-only peer" defaultChecked />
-                                        <div className="w-11 h-6 bg-stone-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#d4af37]"></div>
-                                    </label>
-                                </div>
-
-                                <div className="flex justify-between items-center p-4 border border-stone-200 rounded-xl hover:shadow-md transition-all">
-                                    <div>
-                                        <h3 className="font-bold text-stone-900">SMS Notifications</h3>
-                                        <p className="text-sm text-stone-500">Get delivery alerts on your phone</p>
-                                    </div>
-                                    <label className="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" className="sr-only peer" defaultChecked />
-                                        <div className="w-11 h-6 bg-stone-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#d4af37]"></div>
-                                    </label>
-                                </div>
-
-                                <div className="flex justify-between items-center p-4 border border-stone-200 rounded-xl hover:shadow-md transition-all">
-                                    <div>
-                                        <h3 className="font-bold text-stone-900">Promotional Offers</h3>
-                                        <p className="text-sm text-stone-500">Receive special deals and offers</p>
-                                    </div>
-                                    <label className="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" className="sr-only peer" />
-                                        <div className="w-11 h-6 bg-stone-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#d4af37]"></div>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div className="pt-6 border-t border-stone-200">
-                                <button className="text-red-500 hover:text-red-600 font-bold text-sm transition-colors">
-                                    Delete Account
-                                </button>
-                            </div>
-                        </div>
-                    )}
                 </div>
             </div>
         </div>
