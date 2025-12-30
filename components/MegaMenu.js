@@ -13,7 +13,7 @@ export default function MegaMenu() {
                     title: 'Restaurant Menu',
                     href: '/menu',
                     desc: 'Full dining menu with curries, breads & more',
-                    image: '/assets/menu/paneer-tikka.jpg'
+                    image: '/assets/menu/paneer-tikka-angara.png'
                 },
                 {
                     title: 'Traditional Sweets',
@@ -101,11 +101,21 @@ export default function MegaMenu() {
             {/* Full Width Mega Menu Dropdown */}
             {activeMenu && megaMenuData[activeMenu] && (
                 <div
-                    className="fixed left-0 right-0 top-[80px] z-40 bg-white border-t border-b border-stone-200 shadow-xl"
+                    className="fixed left-0 right-0 top-[80px] z-40 bg-white border-t border-b border-stone-200 shadow-xl overflow-hidden"
                     onMouseEnter={() => setActiveMenu(activeMenu)}
                     onMouseLeave={() => setActiveMenu(null)}
                 >
-                    <div className="max-w-7xl mx-auto px-4 py-8">
+                    {/* Background Pattern Overlay */}
+                    <div
+                        className="absolute inset-0 opacity-[0.05] pointer-events-none z-0 mix-blend-multiply"
+                        style={{
+                            backgroundImage: 'url(/assets/9423856.jpg)',
+                            backgroundRepeat: 'repeat',
+                            backgroundSize: '400px 400px'
+                        }}
+                    />
+
+                    <div className="relative z-10 max-w-7xl mx-auto px-4 py-8">
                         <div className={`grid gap-6 ${megaMenuData[activeMenu].sections.length === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
                             {megaMenuData[activeMenu].sections.map((section, idx) => (
                                 <Link
