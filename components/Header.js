@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import BookingModal from './BookingModal';
 import CartModal from './CartModal';
 import WishlistModal from './WishlistModal';
+import MegaMenu from './MegaMenu';
 import { useModal } from '../context/ModalContext';
 import { useShop } from '../context/ShopContext';
 import { locations } from '../data/locations';
@@ -112,23 +113,8 @@ export default function Header() {
                             </div>
                         </div>
 
-                        {/* Desktop Navigation */}
-                        <div className="hidden lg:flex items-center flex-1 justify-center px-1">
-                            <nav className="flex items-center gap-4">
-                                {navLinks.map((link) => (
-                                    <Link
-                                        key={link.name}
-                                        href={link.href}
-                                        className={`text-[11px] font-bold uppercase tracking-widest transition-colors hover:text-[#d4af37] relative group whitespace-nowrap font-sans ${pathname === link.href ? 'text-[#d4af37]' : 'text-stone-600'
-                                            }`}
-                                    >
-                                        {link.name}
-                                        <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-[#d4af37] transition-all duration-300 group-hover:w-full ${pathname === link.href ? 'w-full' : ''
-                                            }`}></span>
-                                    </Link>
-                                ))}
-                            </nav>
-                        </div>
+                        {/* Desktop Navigation - Mega Menu */}
+                        <MegaMenu />
                         {/* Right: Icons & Actions */}
                         <div className="flex items-center gap-3">
 
