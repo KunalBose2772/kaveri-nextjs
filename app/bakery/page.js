@@ -27,26 +27,26 @@ export default function BakeryPage() {
     ];
 
     const bakeryItems = [
-        { id: 'b1', name: 'Black Forest Cake', category: 'cakes', price: 599, image: '/assets/bakery/black-forest.jpg', desc: 'Rich chocolate cake with cherries', type: 'egg' },
-        { id: 'b2', name: 'Chocolate Truffle Cake', category: 'cakes', price: 699, image: '/assets/bakery/chocolate-truffle.jpg', desc: 'Decadent chocolate layers', type: 'egg' },
-        { id: 'b3', name: 'Butterscotch Cake', category: 'cakes', price: 549, image: '/assets/bakery/butterscotch.jpg', desc: 'Classic butterscotch flavor', type: 'egg' },
-        { id: 'b4', name: 'Pineapple Cake', category: 'cakes', price: 499, image: '/assets/bakery/pineapple.jpg', desc: 'Fresh pineapple delight', type: 'egg' },
-        { id: 'b5', name: 'Red Velvet Cake', category: 'cakes', price: 649, image: '/assets/bakery/red-velvet.jpg', desc: 'Smooth cream cheese frosting', type: 'egg' },
-        { id: 'b6', name: 'Chocolate Pastry', category: 'pastries', price: 89, image: '/assets/bakery/choco-pastry.jpg', desc: 'Individual chocolate delight', type: 'egg' },
-        { id: 'b7', name: 'Strawberry Pastry', category: 'pastries', price: 99, image: '/assets/bakery/strawberry-pastry.jpg', desc: 'Fresh strawberry cream', type: 'egg' },
-        { id: 'b8', name: 'Vanilla Pastry', category: 'pastries', price: 79, image: '/assets/bakery/vanilla-pastry.jpg', desc: 'Classic vanilla flavor', type: 'egg' },
-        { id: 'b9', name: 'Black Forest Pastry', category: 'pastries', price: 99, image: '/assets/bakery/bf-pastry.jpg', desc: 'Mini black forest treat', type: 'egg' },
-        { id: 'b10', name: 'Chocolate Chip Cookies', category: 'cookies', price: 199, image: '/assets/bakery/choco-chip.jpg', desc: 'Crispy chocolate cookies', type: 'veg' },
-        { id: 'b11', name: 'Butter Cookies', category: 'cookies', price: 179, image: '/assets/bakery/butter-cookies.jpg', desc: 'Melt-in-mouth butter', type: 'veg' },
-        { id: 'b12', name: 'Oatmeal Cookies', category: 'cookies', price: 189, image: '/assets/bakery/oatmeal-cookies.jpg', desc: 'Healthy oat cookies', type: 'veg' },
-        { id: 'b13', name: 'Jeera Cookies', category: 'cookies', price: 169, image: '/assets/bakery/jeera-cookies.jpg', desc: 'Savory cumin cookies', type: 'veg' },
-        { id: 'b14', name: 'Brown Bread', category: 'breads', price: 45, image: '/assets/bakery/brown-bread.jpg', desc: 'Healthy whole wheat', type: 'veg' },
-        { id: 'b15', name: 'White Bread', category: 'breads', price: 40, image: '/assets/bakery/white-bread.jpg', desc: 'Soft white bread', type: 'veg' },
-        { id: 'b16', name: 'Multigrain Bread', category: 'breads', price: 55, image: '/assets/bakery/multigrain.jpg', desc: 'Nutritious grain mix', type: 'veg' },
-        { id: 'b17', name: 'Garlic Bread', category: 'breads', price: 129, image: '/assets/bakery/garlic-bread.jpg', desc: 'Buttery garlic flavor', type: 'veg' },
-        { id: 'b18', name: 'Fruit Cake', category: 'cakes', price: 599, image: '/assets/bakery/fruit-cake.jpg', desc: 'Mixed fruit celebration', type: 'egg' },
-        { id: 'b19', name: 'Plum Cake', category: 'cakes', price: 649, image: '/assets/bakery/plum-cake.jpg', desc: 'Traditional Christmas cake', type: 'egg' },
-        { id: 'b20', name: 'Cheese Bread', category: 'breads', price: 149, image: '/assets/bakery/cheese-bread.jpg', desc: 'Loaded  with cheese', type: 'veg' }
+        { id: 'b1', name: 'Black Forest Cake', category: 'cakes', price: 599, image: '/assets/Hampers/IMG_7834.jpg', desc: 'Rich chocolate cake with cherries', type: 'egg' },
+        { id: 'b2', name: 'Chocolate Truffle Cake', category: 'cakes', price: 699, image: '/assets/Hampers/IMG_7809.jpg', desc: 'Decadent chocolate layers', type: 'egg' },
+        { id: 'b3', name: 'Butterscotch Cake', category: 'cakes', price: 549, image: '/assets/Hampers/IMG_7820.jpg', desc: 'Classic butterscotch flavor', type: 'egg' },
+        { id: 'b4', name: 'Pineapple Cake', category: 'cakes', price: 499, image: '/assets/Hampers/IMG_7829.jpg', desc: 'Fresh pineapple delight', type: 'egg' },
+        { id: 'b5', name: 'Red Velvet Cake', category: 'cakes', price: 649, image: '/assets/Hampers/IMG_7831.jpg', desc: 'Smooth cream cheese frosting', type: 'egg' },
+        { id: 'b6', name: 'Chocolate Pastry', category: 'pastries', price: 89, image: '/assets/menu/paneer-tikka.jpg', desc: 'Individual chocolate delight', type: 'egg' },
+        { id: 'b7', name: 'Strawberry Pastry', category: 'pastries', price: 99, image: '/assets/menu/dal-makhani.jpg', desc: 'Fresh strawberry cream', type: 'egg' },
+        { id: 'b8', name: 'Vanilla Pastry', category: 'pastries', price: 79, image: '/assets/menu/paneer-butter.jpg', desc: 'Classic vanilla flavor', type: 'egg' },
+        { id: 'b9', name: 'Black Forest Pastry', category: 'pastries', price: 99, image: '/assets/menu/veg-biryani.jpg', desc: 'Mini black forest treat', type: 'egg' },
+        { id: 'b10', name: 'Chocolate Chip Cookies', category: 'cookies', price: 199, image: '/assets/menu/malai-kofta.jpg', desc: 'Crispy chocolate cookies', type: 'veg' },
+        { id: 'b11', name: 'Butter Cookies', category: 'cookies', price: 179, image: '/assets/menu/kadhai-paneer.jpg', desc: 'Melt-in-mouth butter', type: 'veg' },
+        { id: 'b12', name: 'Oatmeal Cookies', category: 'cookies', price: 189, image: '/assets/menu/shahi-paneer.jpg', desc: 'Healthy oat cookies', type: 'veg' },
+        { id: 'b13', name: 'Jeera Cookies', category: 'cookies', price: 169, image: '/assets/menu/mushroom-masala.jpg', desc: 'Savory cumin cookies', type: 'veg' },
+        { id: 'b14', name: 'Brown Bread', category: 'breads', price: 45, image: '/assets/menu/butter-naan.jpg', desc: 'Healthy whole wheat', type: 'veg' },
+        { id: 'b15', name: 'White Bread', category: 'breads', price: 40, image: '/assets/menu/garlic-naan.jpg', desc: 'Soft white bread', type: 'veg' },
+        { id: 'b16', name: 'Multigrain Bread', category: 'breads', price: 55, image: '/assets/menu/tandoori-roti.jpg', desc: 'Nutritious grain mix', type: 'veg' },
+        { id: 'b17', name: 'Garlic Bread', category: 'breads', price: 129, image: '/assets/menu/plain-rice.jpg', desc: 'Buttery garlic flavor', type: 'veg' },
+        { id: 'b18', name: 'Fruit Cake', category: 'cakes', price: 599, image: '/assets/Hampers/IMG_7840.jpg', desc: 'Mixed fruit celebration', type: 'egg' },
+        { id: 'b19', name: 'Plum Cake', category: 'cakes', price: 649, image: '/assets/Hampers/IMG_7856.jpg', desc: 'Traditional Christmas cake', type: 'egg' },
+        { id: 'b20', name: 'Cheese Bread', category: 'breads', price: 149, image: '/assets/menu/mix-veg.jpg', desc: 'Loaded with cheese', type: 'veg' }
     ];
 
     const filteredItems = bakeryItems.filter(item => {
@@ -72,7 +72,7 @@ export default function BakeryPage() {
                 <section className="relative h-[40vh] md:h-[50vh] flex items-center justify-center overflow-hidden">
                     <div className="absolute inset-0 z-0">
                         <Image
-                            src="/assets/bakery/bakery-hero.jpg"
+                            src="/assets/Ashok Nagar/ashok-nagar-1.png"
                             alt="Fresh Bakery"
                             fill
                             className="object-cover animate-pan-zoom"

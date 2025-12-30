@@ -27,26 +27,26 @@ export default function SweetsPage() {
     ];
 
     const sweets = [
-        { id: 's1', name: 'Kaju Katli', category: 'premium', price: 699, image: '/assets/menu/kaju-katli.jpg', desc: 'Premium diamond-shaped cashew fudge', weight: '500g' },
-        { id: 's2', name: 'Rasgulla', category: 'traditional', price: 299, image: '/assets/menu/rasgulla.jpg', desc: 'Soft cottage cheese balls in sugar syrup', weight: '500g' },
-        { id: 's3', name: 'Gulab Jamun', category: 'traditional', price: 249, image: '/assets/menu/gulab-jamun.jpg', desc: 'Deep-fried milk dumplings in rose syrup', weight: '500g' },
-        { id: 's4', name: 'Soan Papdi', category: 'traditional', price: 349, image: '/assets/menu/soan-papdi.jpg', desc: 'Flaky, crispy traditional sweet', weight: '500g' },
-        { id: 's5', name: 'Besan Ladoo', category: 'traditional', price: 299, image: '/assets/menu/besan-ladoo.jpg', desc: 'Gram flour balls with ghee', weight: '500g' },
-        { id: 's6', name: 'Motichoor Ladoo', category: 'traditional', price: 329, image: '/assets/menu/motichoor-ladoo.jpg', desc: 'Fine boondi pearls sweetened', weight: '500g' },
-        { id: 's7', name: 'Barfi Mix', category: 'premium', price: 599, image: '/assets/menu/barfi-mix.jpg', desc: 'Assorted premium barfi selection', weight: '500g' },
-        { id: 's8', name: 'Dry Fruit Barfi', category: 'dry-fruits', price: 799, image: '/assets/menu/dry-fruit-barfi.jpg', desc: 'Rich barfi with assorted nuts', weight: '500g' },
-        { id: 's9', name: 'Kaju Roll', category: 'premium', price: 749, image: '/assets/menu/kaju-roll.jpg', desc: 'Cashew rolls with silver leaf', weight: '500g' },
-        { id: 's10', name: 'Pista Roll', category: 'dry-fruits', price: 849, image: '/assets/menu/pista-roll.jpg', desc: 'Pistachio rolls - premium quality', weight: '500g' },
-        { id: 's11', name: 'Rasmalai', category: 'traditional', price: 399, image: '/assets/menu/rasmalai.jpg', desc: 'Cottage cheese patties in cream', weight: '500g' },
-        { id: 's12', name: 'Kalakand', category: 'traditional', price: 449, image: '/assets/menu/kalakand.jpg', desc: 'Milk cake with cardamom', weight: '500g' },
-        { id: 's13', name: 'Peda', category: 'traditional', price: 349, image: '/assets/menu/peda.jpg', desc: 'Traditional milk-based sweet', weight: '500g' },
-        { id: 's14', name: 'Anjeer Barfi', category: 'dry-fruits', price: 899, image: '/assets/menu/anjeer-barfi.jpg', desc: 'Fig barfi with nuts', weight: '500g' },
-        { id: 's15', name: 'Coconut Ladoo', category: 'traditional', price: 299, image: '/assets/menu/coconut-ladoo.jpg', desc: 'Fresh coconut balls', weight: '500g' },
-        { id: 's16', name: 'Mysore Pak', category: 'premium', price: 549, image: '/assets/menu/mysore-pak.jpg', desc: 'Ghee-rich gram flour sweet', weight: '500g' },
-        { id: 's17', name: 'Jalebi', category: 'seasonal', price: 199, image: '/assets/menu/jalebi.jpg', desc: 'Crispy spiral in sugar syrup', weight: '500g' },
-        { id: 's18', name: 'Petha', category: 'seasonal', price: 399, image: '/assets/menu/petha.jpg', desc: 'Translucent pumpkin sweet', weight: '500g' },
-        { id: 's19', name: 'Kheer Kadam', category: 'premium', price: 649, image: '/assets/menu/kheer-kadam.jpg', desc: 'Two-layered milk sweet', weight: '500g' },
-        { id: 's20', name: 'Rajbhog', category: 'premium', price: 699, image: '/assets/menu/rajbhog.jpg', desc: 'Saffron cottage cheese balls', weight: '500g' }
+        { id: 's1', name: 'Kaju Katli', category: 'premium', price: 699, image: '/assets/menu/paneer-tikka.jpg', desc: 'Premium diamond-shaped cashew fudge', weight: '500g' },
+        { id: 's2', name: 'Rasgulla', category: 'traditional', price: 299, image: '/assets/menu/dal-makhani.jpg', desc: 'Soft cottage cheese balls in sugar syrup', weight: '500g' },
+        { id: 's3', name: 'Gulab Jamun', category: 'traditional', price: 249, image: '/assets/menu/paneer-butter.jpg', desc: 'Deep-fried milk dumplings in rose syrup', weight: '500g' },
+        { id: 's4', name: 'Soan Papdi', category: 'traditional', price: 349, image: '/assets/menu/veg-biryani.jpg', desc: 'Flaky, crispy traditional sweet', weight: '500g' },
+        { id: 's5', name: 'Besan Ladoo', category: 'traditional', price: 299, image: '/assets/menu/malai-kofta.jpg', desc: 'Gram flour balls with ghee', weight: '500g' },
+        { id: 's6', name: 'Motichoor Ladoo', category: 'traditional', price: 329, image: '/assets/menu/kadhai-paneer.jpg', desc: 'Fine boondi pearls sweetened', weight: '500g' },
+        { id: 's7', name: 'Barfi Mix', category: 'premium', price: 599, image: '/assets/menu/shahi-paneer.jpg', desc: 'Assorted premium barfi selection', weight: '500g' },
+        { id: 's8', name: 'Dry Fruit Barfi', category: 'dry-fruits', price: 799, image: '/assets/menu/mushroom-masala.jpg', desc: 'Rich barfi with assorted nuts', weight: '500g' },
+        { id: 's9', name: 'Kaju Roll', category: 'premium', price: 749, image: '/assets/menu/mix-veg.jpg', desc: 'Cashew rolls with silver leaf', weight: '500g' },
+        { id: 's10', name: 'Pista Roll', category: 'dry-fruits', price: 849, image: '/assets/menu/gobi-manchurian.jpg', desc: 'Pistachio rolls - premium quality', weight: '500g' },
+        { id: 's11', name: 'Rasmalai', category: 'traditional', price: 399, image: '/assets/menu/chilli-paneer.jpg', desc: 'Cottage cheese patties in cream', weight: '500g' },
+        { id: 's12', name: 'Kalakand', category: 'traditional', price: 449, image: '/assets/menu/manchow-soup.jpg', desc: 'Milk cake with cardamom', weight: '500g' },
+        { id: 's13', name: 'Peda', category: 'traditional', price: 349, image: '/assets/menu/hot-sour.jpg', desc: 'Traditional milk-based sweet', weight: '500g' },
+        { id: 's14', name: 'Anjeer Barfi', category: 'dry-fruits', price: 899, image: '/assets/menu/tomato-soup.jpg', desc: 'Fig barfi with nuts', weight: '500g' },
+        { id: 's15', name: 'Coconut Ladoo', category: 'traditional', price: 299, image: '/assets/menu/crispy-corn.jpg', desc: 'Fresh coconut balls', weight: '500g' },
+        { id: 's16', name: 'Mysore Pak', category: 'premium', price: 549, image: '/assets/menu/baby-corn.jpg', desc: 'Ghee-rich gram flour sweet', weight: '500g' },
+        { id: 's17', name: 'Jalebi', category: 'seasonal', price: 199, image: '/assets/menu/butter-naan.jpg', desc: 'Crispy spiral in sugar syrup', weight: '500g' },
+        { id: 's18', name: 'Petha', category: 'seasonal', price: 399, image: '/assets/menu/garlic-naan.jpg', desc: 'Translucent pumpkin sweet', weight: '500g' },
+        { id: 's19', name: 'Kheer Kadam', category: 'premium', price: 649, image: '/assets/menu/tandoori-roti.jpg', desc: 'Two-layered milk sweet', weight: '500g' },
+        { id: 's20', name: 'Rajbhog', category: 'premium', price: 699, image: '/assets/menu/plain-rice.jpg', desc: 'Saffron cottage cheese balls', weight: '500g' }
     ];
 
     const filteredSweets = sweets.filter(sweet => {
@@ -72,7 +72,7 @@ export default function SweetsPage() {
                 <section className="relative h-[40vh] md:h-[50vh] flex items-center justify-center overflow-hidden">
                     <div className="absolute inset-0 z-0">
                         <Image
-                            src="/assets/menu/traditional-sweets.jpg"
+                            src="/assets/Hampers/IMG_7925.jpg"
                             alt="Traditional Sweets"
                             fill
                             className="object-cover animate-pan-zoom"

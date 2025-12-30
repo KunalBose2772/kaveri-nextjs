@@ -50,6 +50,8 @@ export default function Header() {
     const navLinks = [
         { name: 'Outlets', href: '/' },
         { name: 'Menu', href: '/menu' },
+        { name: 'Sweets', href: '/sweets' },
+        { name: 'Bakery', href: '/bakery' },
         { name: 'About', href: '/about' },
         { name: 'Gallery', href: '/gallery' },
         { name: 'Hampers', href: '/hampers' },
