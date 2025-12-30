@@ -1,10 +1,22 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export default function MegaMenu() {
     const [activeMenu, setActiveMenu] = useState(null);
+    const timeoutRef = useRef(null);
+
+    const handleMouseEnter = (menuName) => {
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        setActiveMenu(menuName);
+    };
+
+    const handleMouseLeave = () => {
+        timeoutRef.current = setTimeout(() => {
+            setActiveMenu(null);
+        }, 150); // 150ms delay to allow moving to dropdown
+    };
 
     const megaMenuData = {
         'Our Menu': {
@@ -77,8 +89,8 @@ export default function MegaMenu() {
                     <div
                         key={menuName}
                         className="relative"
-                        onMouseEnter={() => setActiveMenu(menuName)}
-                        onMouseLeave={() => setActiveMenu(null)}
+                        onMouseEnter={() => handleMouseEnter(menuName)}
+                        onMouseLeave={handleMouseLeave}
                     >
                         <button className="px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-stone-700 hover:text-[#d4af37] transition-colors">
                             {menuName}
@@ -102,12 +114,12 @@ export default function MegaMenu() {
             {activeMenu && megaMenuData[activeMenu] && (
                 <div
                     className="fixed left-0 right-0 top-[80px] z-40 bg-white border-t border-b border-stone-200 shadow-xl overflow-hidden"
-                    onMouseEnter={() => setActiveMenu(activeMenu)}
-                    onMouseLeave={() => setActiveMenu(null)}
+                    onMouseEnter={() => handleMouseEnter(activeMenu)}
+                    onMouseLeave={handleMouseLeave}
                 >
                     {/* Background Pattern Overlay */}
                     <div
-                        className="absolute inset-0 opacity-[0.05] pointer-events-none z-0 mix-blend-multiply"
+                        className="absolute inset-0 opacity-[0.8] pointer-events-none z-0 mix-blend-multiply"
                         style={{
                             backgroundImage: 'url(/assets/9423856.jpg)',
                             backgroundRepeat: 'repeat',
@@ -121,7 +133,7 @@ export default function MegaMenu() {
                                 <Link
                                     key={idx}
                                     href={section.href}
-                                    className="group block bg-stone-50 rounded-2xl p-6 hover:bg-amber-50 hover:shadow-lg transition-all"
+                                    className="group block bg-stone-50/90 rounded-2xl p-6 hover:bg-amber-50/90 hover:shadow-lg transition-all"
                                 >
                                     <div className="relative w-full h-40 rounded-xl overflow-hidden mb-4">
                                         <Image
@@ -148,7 +160,7 @@ export default function MegaMenu() {
             {activeMenu && (
                 <div
                     className="fixed inset-0 bg-black/20 z-30 top-[80px]"
-                    onMouseEnter={() => setActiveMenu(null)}
+                    onMouseEnter={handleMouseLeave}
                 />
             )}
         </>
